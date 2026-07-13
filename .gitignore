@@ -1,0 +1,27 @@
+# Dependencies
+/vendor/
+
+# Composer (this is a library — the lock file is not committed)
+composer.lock
+composer.phar
+
+# Build & coverage output
+/build/
+/coverage/
+
+# PHP tooling caches
+.phpunit.cache/
+.phpunit.result.cache
+.php-cs-fixer.cache
+
+# Testbench
+testbench.yaml
+
+# IDE / editor
+/.idea/
+/.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
