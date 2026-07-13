@@ -31,7 +31,13 @@ jobs:
       - name: Install dependencies
         run: |
           composer require "illuminate/support:${{ matrix.laravel }}" "illuminate/http:${{ matrix.laravel }}" --no-interaction --no-update
-          composer update --prefer-dist --no-interaction
+          if [ "${{ matrix.laravel }}" = "11.*" ]; then
+            # Temporary workaround: Laravel 11 currently resolves to advisory-flagged versions.
+            # This bypass is limited to the Laravel 11 job and should be removed once secure releases are available.
+            composer update --prefer-dist --no-interaction --no-security-blocking
+          else
+            composer update --prefer-dist --no-interaction
+          fi
 
       - name: Run tests
         run: vendor/bin/phpunit
